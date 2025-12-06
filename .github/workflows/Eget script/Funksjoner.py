@@ -34,10 +34,25 @@ def moneyball(ps_clean):
 
 print(moneyball(ps_clean)['second_name'], moneyball(ps_clean)['first_name'])
 
-def moneyball_list(ps_clean):
+def moneyball_topp_10(ps_clean):
     liste = ps_clean[(ps_clean['total_points'] > 0) & (ps_clean["now_cost"] > 0)].copy()
     liste['value'] = liste['total_points'] / liste['now_cost']
 
     topp10 = liste.sort_values("value", ascending = False).head(10)
     return topp10
 
+def best_form_topp_10(ps_clean):
+    liste = ps_clean[(ps_clean['form']>0)]
+    
+    topp10 = liste.sort_values("form", ascending = False).head(10)
+    return topp10
+
+def print_spiller(ps_clean, spiller):
+    temp = None
+    for _, sp in ps_clean.iterrows():
+        if spiller.lower() == str(sp['web_name']).lower():
+            temp = sp
+    return f"{temp['first_name']}, {temp['web_name']} - {temp['form']} form - {temp['now_cost']} pris"
+
+print(best_form_topp_10(ps_clean)['web_name'])
+print(print_spiller(ps_clean, "Murillo"))
