@@ -41,6 +41,8 @@ def moneyball_topp_10(ps_clean):
     topp10 = liste.sort_values("value", ascending = False).head(10)
     return topp10
 
+print(moneyball_topp_10(ps_clean)['web_name'])
+
 def best_form_topp_10(ps_clean):
     liste = ps_clean[(ps_clean['form']>0)]
     
@@ -54,5 +56,5 @@ def print_spiller(ps_clean, spiller):
             temp = sp
     return f"{temp['first_name']}, {temp['second_name']} - {temp['form']} form - {temp['now_cost']} pris"
 
-#print(best_form_topp_10(ps_clean)['web_name'])
+print(best_form_topp_10(ps_clean)['web_name'])
 #print(print_spiller(ps_clean, "m.salah"))
